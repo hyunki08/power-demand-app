@@ -1,14 +1,12 @@
 @import '~antd/dist/antd.css';
 
 .logo {
-  height: 32px;
-  margin: 16px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: #dfdfdf;
-  font-size:16px;
+  height: 64px;
+  background:#1890ff;
+  color: #fff;
+  font-size:18px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 60px;
   text-align: center;
 }
 .siteLayout .siteLayoutBackground {
@@ -17,3 +15,11 @@
 [data-theme="dark"] .siteLayout .siteLayoutBackground {
   background: #141414;
 }
+.siteLayoutHeader {
+  background: #329cff;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 64px;
+}
+
