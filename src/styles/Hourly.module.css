@@ -1,17 +1,26 @@
-.datepicker {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.datepickerwrapper {
   text-align: start;
-  min-height: 120px;
+}
+
+.datepicker {
+ margin-bottom: 20px;
 }
 
 .dates {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .date {
+  color: #329cff;
   cursor: pointer;
+}
+
+.datedelete{
+  padding: 0px 1px;
+  color:#aaa
 }
