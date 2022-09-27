@@ -1,0 +1,17 @@
+.datepicker {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: start;
+  min-height: 120px;
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.date {
+  cursor: pointer;
+}

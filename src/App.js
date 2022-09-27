@@ -1,8 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/App.css";
+import "chart.js/auto";
 
 import DefaultLayout from "./layouts/DefaultLayout";
+
+import Hourly from "./pages/hourly/Hourly";
 
 function App() {
   return (
@@ -10,7 +13,7 @@ function App() {
       <DefaultLayout>
         <Routes>
           <Route path="/" element={<div />} />
-          <Route path="/hourly" element={<div />} />
+          <Route path="/hourly" element={<Hourly />} />
           <Route path="/daily" element={<div />} />
           <Route path="/monthly" element={<div />} />
           <Route path="/yearly" element={<div />} />
