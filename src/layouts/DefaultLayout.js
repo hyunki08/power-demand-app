@@ -46,7 +46,7 @@ const DefaultLayout = ({ children }) => {
           bottom: 0,
         }}
       >
-        <div className={styles.logo}>Power Demand App</div>
+        <div className={styles.logo}>제주 전력 수요량</div>
         <Menu
           theme="light"
           mode="inline"
