@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { DatePicker, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { TimeLabels, createData, createDataset } from "../../utils/chart";
 import styles from "../../styles/Hourly.module.css";
+import { DateContext } from "../../contexts/dateContext";
+import moment from "moment";
 
 const options = {
   responsive: true,
@@ -18,6 +20,7 @@ const options = {
 };
 
 const Hourly = () => {
+  const meta = useContext(DateContext);
   const [data, setData] = useState(createData(TimeLabels));
   const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -42,6 +45,10 @@ const Hourly = () => {
     fetchHourly(date);
   };
 
+  const disabledDate = (current) => {
+    return !current.isBetween(meta.minDate, meta.maxDate);
+  };
+
   const fetchHourly = async (date) => {
     setLoading(true);
     const res = await fetch(
@@ -62,7 +69,8 @@ const Hourly = () => {
       <div className={styles.datepickerwrapper}>
         <DatePicker
           className={styles.datepicker}
-          value={""}
+          defaultValue={moment(meta.maxDate)}
+          disabledDate={disabledDate}
           onChange={(_, date) => onClickAddDate(date)}
         />
         <div className={styles.dates}>
