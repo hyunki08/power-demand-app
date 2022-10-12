@@ -30,11 +30,17 @@ export const createData = (labels) => ({
   datasets: [],
 });
 
-export const createDataset = (label, data) => ({
+export const createHourlyDataset = (label, data) => ({
   label: label,
   data: data,
   borderColor: createRandomColor(),
   tension: 0.25,
+});
+
+export const createDailyDataset = (label, data) => ({
+  label: label,
+  data: data,
+  backgroundColor: createRandomColor(),
 });
 
 export const createRandomColor = () =>

@@ -1,16 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
+import {
+  LineChartOutlined,
+  BarChartOutlined,
+  MoreOutlined,
+} from "@ant-design/icons";
 import styles from "../styles/DefaultLayout.module.css";
 
 const { Header, Footer, Content, Sider } = Layout;
 
 const items = [
-  { key: "/", label: "Dashboard" },
-  { key: "/hourly", label: "Hourly" },
-  { key: "/daily", label: "Daily" },
-  { key: "/monthly", label: "Monthly" },
-  { key: "/yearly", label: "Yearly" },
+  { key: "/", label: "Dashboard", title: "Dashboard" },
+  {
+    key: "/hourly",
+    label: "Hourly",
+    title: "Hourly",
+    icon: <LineChartOutlined />,
+  },
+  {
+    key: "/daily",
+    label: "Daily",
+    icon: <MoreOutlined />,
+    children: [
+      { key: "/daily/total", label: "Daily Total", icon: <BarChartOutlined /> },
+      { key: "/daily/avg", label: "Daily Average", icon: <BarChartOutlined /> },
+    ],
+  },
+  { key: "/monthly", label: "Monthly", icon: <MoreOutlined /> },
+  { key: "/yearly", label: "Yearly", icon: <MoreOutlined /> },
 ];
 
 const DefaultLayout = ({ children }) => {
@@ -26,7 +44,19 @@ const DefaultLayout = ({ children }) => {
 
   const setSelected = (key) => {
     setSelectedKey(key);
-    setHeaderTitle(items.find((item) => item.key === key)?.label);
+    let index = items.findIndex((item) => item.key === key);
+    if (index !== -1) {
+      setHeaderTitle(items[index].label);
+    } else {
+      index = items.findIndex(
+        (item) => item.key !== "/" && key.includes(item.key)
+      );
+      if (index !== -1) {
+        setHeaderTitle(
+          items[index].children?.find((item) => item.key === key)?.label
+        );
+      }
+    }
   };
 
   useEffect(() => {

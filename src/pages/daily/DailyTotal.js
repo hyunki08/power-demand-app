@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import React, { useContext, useState } from "react";
+import { DateContext } from "../../contexts/dateContext";
+import { createData, createDailyDataset } from "../../utils/chart";
+import styles from "../../styles/Daily.module.css";
+import moment from "moment";
+import { Bar } from "react-chartjs-2";
 import { DatePicker, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import { TimeLabels, createData, createHourlyDataset } from "../../utils/chart";
-import styles from "../../styles/Hourly.module.css";
-import { DateContext } from "../../contexts/dateContext";
-import moment from "moment";
 
 const options = {
   responsive: true,
@@ -19,11 +19,15 @@ const options = {
   },
 };
 
-const Hourly = () => {
+const DailyTotal = () => {
   const meta = useContext(DateContext);
-  const [data, setData] = useState(createData(TimeLabels));
+  const [data, setData] = useState(createData(["Total"]));
   const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const disabledDate = (current) => {
+    return !current.isBetween(meta.minDate, meta.maxDate);
+  };
 
   const onClickDeleteDate = (date) => {
     const index = dates.findIndex((d) => d === date);
@@ -34,33 +38,29 @@ const Hourly = () => {
     setDates([...dates.slice(0, index), ...dates.slice(index + 1)]);
   };
 
+  const onClickAddDate = (date) => {
+    setDates([date, ...dates]);
+    fetchDaily(date);
+  };
+
   const onClickClearDates = () => {
     setData({ ...data, datasets: [] });
     setDates([]);
   };
 
-  const onClickAddDate = (date) => {
-    console.log([date, ...dates]);
-    setDates([date, ...dates]);
-    fetchHourly(date);
-  };
-
-  const disabledDate = (current) => {
-    return !current.isBetween(meta.minDate, meta.maxDate);
-  };
-
-  const fetchHourly = async (date) => {
+  const fetchDaily = async (date) => {
     setLoading(true);
     const res = await fetch(
-      "http://localhost:8080/v1/pd/hourly?date=" + date
+      "http://localhost:8080/v1/pd/daily?date=" + date
     ).then((response) => response.json());
+    const total = res[0]["sum"];
 
-    const demands = Object.keys(res)
-      .filter((k) => k.match(new RegExp("[0-9]+")))
-      .map((k) => res[k]);
-    const dataset = createHourlyDataset(date, demands);
+    const dataset = createDailyDataset(date, [total]);
 
-    setData({ ...data, datasets: [dataset, ...data.datasets] });
+    setData({
+      ...data,
+      datasets: [dataset, ...data.datasets],
+    });
     setLoading(false);
   };
 
@@ -93,9 +93,9 @@ const Hourly = () => {
             ))}
         </div>
       </div>
-      {loading ? <></> : <Line options={options} data={data} />}
+      {loading ? <></> : <Bar options={options} data={data} />}
     </div>
   );
 };
 
-export default Hourly;
+export default DailyTotal;
