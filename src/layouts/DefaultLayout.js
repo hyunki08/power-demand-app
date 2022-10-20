@@ -32,8 +32,40 @@ const items = [
       { key: "/daily/avg", label: "Daily Average", icon: <BarChartOutlined /> },
     ],
   },
-  { key: "/monthly", label: "Monthly", icon: <MoreOutlined /> },
-  { key: "/yearly", label: "Yearly", icon: <MoreOutlined /> },
+  {
+    key: "/monthly",
+    label: "Monthly",
+    icon: <MoreOutlined />,
+    children: [
+      {
+        key: "/monthly/total",
+        label: "Monthly Total",
+        icon: <BarChartOutlined />,
+      },
+      {
+        key: "/monthly/avg",
+        label: "Monthly Average",
+        icon: <BarChartOutlined />,
+      },
+    ],
+  },
+  {
+    key: "/yearly",
+    label: "Yearly",
+    icon: <MoreOutlined />,
+    children: [
+      {
+        key: "/yearly/total",
+        label: "Yearly Total",
+        icon: <BarChartOutlined />,
+      },
+      {
+        key: "/yearly/avg",
+        label: "Yearly Average",
+        icon: <BarChartOutlined />,
+      },
+    ],
+  },
 ];
 
 const DefaultLayout = ({ children }) => {

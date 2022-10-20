@@ -10,6 +10,10 @@ import Hourly from "./pages/hourly/Hourly";
 import DailyTotal from "./pages/daily/DailyTotal";
 import DailyAvg from "./pages/daily/DailyAvg";
 import DailyStacked from "./pages/daily/DailyStacked";
+import MonthlyTotal from "./pages/monthly/MonthlyTotal";
+import MonthlyAvg from "./pages/monthly/MonthlyAvg";
+import YearlyTotal from "./pages/yearly/YearlyTotal";
+import YearlyAvg from "./pages/yearly/YearlyAvg";
 
 function App() {
   const [metadata, setMetadata] = useState({
@@ -38,8 +42,10 @@ function App() {
             <Route path="/daily/total" element={<DailyTotal />} />
             <Route path="/daily/stacked" element={<DailyStacked />} />
             <Route path="/daily/avg" element={<DailyAvg />} />
-            <Route path="/monthly" element={<div />} />
-            <Route path="/yearly" element={<div />} />
+            <Route path="/monthly/total" element={<MonthlyTotal />} />
+            <Route path="/monthly/avg" element={<MonthlyAvg />} />
+            <Route path="/yearly/total" element={<YearlyTotal />} />
+            <Route path="/yearly/avg" element={<YearlyAvg />} />
             <Route path="/*" element={<div>not found</div>} />
           </Routes>
         </DefaultLayout>
