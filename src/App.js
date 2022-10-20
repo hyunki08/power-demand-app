@@ -16,6 +16,7 @@ import YearlyTotal from "./pages/yearly/YearlyTotal";
 import YearlyAvg from "./pages/yearly/YearlyAvg";
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const [metadata, setMetadata] = useState({
     maxDate: "",
     minDate: "",
@@ -26,6 +27,7 @@ function App() {
       response.json()
     );
     setMetadata({ ...res });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -35,20 +37,24 @@ function App() {
   return (
     <DateContext.Provider value={metadata}>
       <Router>
-        <DefaultLayout>
-          <Routes>
-            <Route path="/" element={<div />} />
-            <Route path="/hourly" element={<Hourly />} />
-            <Route path="/daily/total" element={<DailyTotal />} />
-            <Route path="/daily/stacked" element={<DailyStacked />} />
-            <Route path="/daily/avg" element={<DailyAvg />} />
-            <Route path="/monthly/total" element={<MonthlyTotal />} />
-            <Route path="/monthly/avg" element={<MonthlyAvg />} />
-            <Route path="/yearly/total" element={<YearlyTotal />} />
-            <Route path="/yearly/avg" element={<YearlyAvg />} />
-            <Route path="/*" element={<div>not found</div>} />
-          </Routes>
-        </DefaultLayout>
+        {loading ? (
+          <></>
+        ) : (
+          <DefaultLayout>
+            <Routes>
+              <Route path="/" element={<div />} />
+              <Route path="/hourly" element={<Hourly />} />
+              <Route path="/daily/total" element={<DailyTotal />} />
+              <Route path="/daily/stacked" element={<DailyStacked />} />
+              <Route path="/daily/avg" element={<DailyAvg />} />
+              <Route path="/monthly/total" element={<MonthlyTotal />} />
+              <Route path="/monthly/avg" element={<MonthlyAvg />} />
+              <Route path="/yearly/total" element={<YearlyTotal />} />
+              <Route path="/yearly/avg" element={<YearlyAvg />} />
+              <Route path="/*" element={<div>not found</div>} />
+            </Routes>
+          </DefaultLayout>
+        )}
       </Router>
     </DateContext.Provider>
   );
