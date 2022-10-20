@@ -14,37 +14,19 @@ const options = {
       display: false,
     },
   },
+  scales: {
+    x: {
+      stacked: false,
+    },
+    y: {
+      stacked: false,
+    },
+  },
 };
 
 const Hourly = () => {
-  const meta = useContext(DateContext);
   const [data, setData] = useState(createData(TimeLabels));
-  const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const onClickDeleteDate = (date) => {
-    const index = dates.findIndex((d) => d === date);
-    setData({
-      ...data,
-      datasets: data.datasets.filter((d) => d.label !== date),
-    });
-    setDates([...dates.slice(0, index), ...dates.slice(index + 1)]);
-  };
-
-  const onClickClearDates = () => {
-    setData({ ...data, datasets: [] });
-    setDates([]);
-  };
-
-  const onClickAddDate = (date) => {
-    console.log([date, ...dates]);
-    setDates([date, ...dates]);
-    fetchHourly(date);
-  };
-
-  const disabledDate = (current) => {
-    return !current.isBetween(meta.minDate, meta.maxDate);
-  };
 
   const fetchHourly = async (date) => {
     setLoading(true);
@@ -63,14 +45,7 @@ const Hourly = () => {
 
   return (
     <div>
-      <DateSelector
-        meta={meta}
-        dates={dates}
-        disabledDate={disabledDate}
-        onClickAddDate={onClickAddDate}
-        onClickClearDates={onClickClearDates}
-        onClickDeleteDate={onClickDeleteDate}
-      />
+      <DateSelector fethchData={fetchHourly} data={data} setData={setData} />
       {loading ? <></> : <Line options={options} data={data} />}
     </div>
   );

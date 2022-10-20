@@ -14,36 +14,19 @@ const options = {
       display: false,
     },
   },
+  scales: {
+    x: {
+      stacked: false,
+    },
+    y: {
+      stacked: false,
+    },
+  },
 };
 
 const DailyAvg = () => {
-  const meta = useContext(DateContext);
   const [data, setData] = useState(createData(["Average"]));
-  const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const disabledDate = (current) => {
-    return !current.isBetween(meta.minDate, meta.maxDate);
-  };
-
-  const onClickDeleteDate = (date) => {
-    const index = dates.findIndex((d) => d === date);
-    setData({
-      ...data,
-      datasets: data.datasets.filter((d) => d.label !== date),
-    });
-    setDates([...dates.slice(0, index), ...dates.slice(index + 1)]);
-  };
-
-  const onClickAddDate = (date) => {
-    setDates([date, ...dates]);
-    fetchDaily(date);
-  };
-
-  const onClickClearDates = () => {
-    setData({ ...data, datasets: [] });
-    setDates([]);
-  };
 
   const fetchDaily = async (date) => {
     setLoading(true);
@@ -63,14 +46,7 @@ const DailyAvg = () => {
 
   return (
     <div>
-      <DateSelector
-        meta={meta}
-        dates={dates}
-        disabledDate={disabledDate}
-        onClickAddDate={onClickAddDate}
-        onClickClearDates={onClickClearDates}
-        onClickDeleteDate={onClickDeleteDate}
-      />
+      <DateSelector fethchData={fetchDaily} data={data} setData={setData} />
       {loading ? <></> : <Bar options={options} data={data} />}
     </div>
   );
