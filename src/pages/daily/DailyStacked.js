@@ -1,11 +1,8 @@
 import React, { useContext, useState } from "react";
 import { DateContext } from "../../contexts/dateContext";
 import { createData, createDailyDataset, TimeLabels } from "../../utils/chart";
-import styles from "../../styles/Daily.module.css";
-import moment from "moment";
 import { Bar } from "react-chartjs-2";
-import { DatePicker, Button } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import DateSelector from "../../components/DateSelector";
 
 const options = {
   responsive: true,
@@ -84,33 +81,14 @@ const DailyStack = () => {
 
   return (
     <div>
-      <div className={styles.datepickerwrapper}>
-        <DatePicker
-          className={styles.datepicker}
-          defaultValue={moment(meta.maxDate)}
-          disabledDate={disabledDate}
-          onChange={(_, date) => onClickAddDate(date)}
-        />
-        <div className={styles.dates}>
-          {!!dates && dates.length > 0 && (
-            <Button type="primary" onClick={onClickClearDates}>
-              Clear
-            </Button>
-          )}
-          {!!dates &&
-            dates.length > 0 &&
-            dates.map((date, i) => (
-              <div
-                key={i}
-                className={styles.date}
-                onClick={() => onClickDeleteDate(date)}
-              >
-                {date}
-                <CloseOutlined className={styles.datedelete} />
-              </div>
-            ))}
-        </div>
-      </div>
+      <DateSelector
+        meta={meta}
+        dates={dates}
+        disabledDate={disabledDate}
+        onClickAddDate={onClickAddDate}
+        onClickClearDates={onClickClearDates}
+        onClickDeleteDate={onClickDeleteDate}
+      />
       {loading ? <></> : <Bar options={options} data={data} />}
     </div>
   );

@@ -9,7 +9,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import Hourly from "./pages/hourly/Hourly";
 import DailyTotal from "./pages/daily/DailyTotal";
 import DailyAvg from "./pages/daily/DailyAvg";
-import DailyStack from "./pages/daily/DailyStack";
+import DailyStacked from "./pages/daily/DailyStacked";
 
 function App() {
   const [metadata, setMetadata] = useState({
@@ -36,7 +36,7 @@ function App() {
             <Route path="/" element={<div />} />
             <Route path="/hourly" element={<Hourly />} />
             <Route path="/daily/total" element={<DailyTotal />} />
-            <Route path="/daily/stack" element={<DailyStack />} />
+            <Route path="/daily/stacked" element={<DailyStacked />} />
             <Route path="/daily/avg" element={<DailyAvg />} />
             <Route path="/monthly" element={<div />} />
             <Route path="/yearly" element={<div />} />

@@ -24,7 +24,11 @@ const items = [
     icon: <MoreOutlined />,
     children: [
       { key: "/daily/total", label: "Daily Total", icon: <BarChartOutlined /> },
-      { key: "/daily/stack", label: "Daily Stack", icon: <BarChartOutlined /> },
+      {
+        key: "/daily/stacked",
+        label: "Daily Stacked",
+        icon: <BarChartOutlined />,
+      },
       { key: "/daily/avg", label: "Daily Average", icon: <BarChartOutlined /> },
     ],
   },

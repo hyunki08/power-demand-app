@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { DatePicker, Button } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 import { TimeLabels, createData, createHourlyDataset } from "../../utils/chart";
-import styles from "../../styles/Hourly.module.css";
 import { DateContext } from "../../contexts/dateContext";
-import moment from "moment";
+import DateSelector from "../../components/DateSelector";
 
 const options = {
   responsive: true,
@@ -66,33 +63,14 @@ const Hourly = () => {
 
   return (
     <div>
-      <div className={styles.datepickerwrapper}>
-        <DatePicker
-          className={styles.datepicker}
-          defaultValue={moment(meta.maxDate)}
-          disabledDate={disabledDate}
-          onChange={(_, date) => onClickAddDate(date)}
-        />
-        <div className={styles.dates}>
-          {!!dates && dates.length > 0 && (
-            <Button type="primary" onClick={onClickClearDates}>
-              Clear
-            </Button>
-          )}
-          {!!dates &&
-            dates.length > 0 &&
-            dates.map((date, i) => (
-              <div
-                key={i}
-                className={styles.date}
-                onClick={() => onClickDeleteDate(date)}
-              >
-                {date}
-                <CloseOutlined className={styles.datedelete} />
-              </div>
-            ))}
-        </div>
-      </div>
+      <DateSelector
+        meta={meta}
+        dates={dates}
+        disabledDate={disabledDate}
+        onClickAddDate={onClickAddDate}
+        onClickClearDates={onClickClearDates}
+        onClickDeleteDate={onClickDeleteDate}
+      />
       {loading ? <></> : <Line options={options} data={data} />}
     </div>
   );
