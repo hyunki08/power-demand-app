@@ -52,7 +52,7 @@ const YearlyTotal = () => {
       "http://localhost:8080/v1/pd/yearly?year=" + year
     ).then((response) => response.json());
 
-    const total = res[0]["avg_year"];
+    const total = res[0]["sum_year"];
     const dataset = createDefaultDataset(year, [total]);
 
     setData({
