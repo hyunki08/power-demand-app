@@ -18,7 +18,7 @@ const options = {
 
 const YearlyTotal = () => {
   const meta = useContext(DateContext);
-  const [data, setData] = useState(createData(["Average"]));
+  const [data, setData] = useState(createData(["Total"]));
   const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
 
