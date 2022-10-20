@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
 
 const DailyTotal = () => {
-  const [data, setData] = useState(createData([]));
+  const [data, setData] = useState(createData(["Total"]));
   const [loading, setLoading] = useState(false);
 
   const fetchDaily = async (date) => {
