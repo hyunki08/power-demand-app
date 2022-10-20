@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
-import { TimeLabels, createData, createHourlyDataset } from "../../utils/chart";
-import { DateContext } from "../../contexts/dateContext";
 import DateSelector from "../../components/DateSelector";
+import { TimeLabels, createData, createHourlyDataset } from "../../utils/chart";
 
 const options = {
   responsive: true,

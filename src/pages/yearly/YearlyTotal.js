@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
-import YearSelector from "../../components/YearSelector";
-import { DateContext } from "../../contexts/dateContext";
+import DateSelector from "../../components/DateSelector";
 import { createDefaultDataset, createData } from "../../utils/chart";
 
 const options = {
@@ -17,35 +16,10 @@ const options = {
 };
 
 const YearlyTotal = () => {
-  const meta = useContext(DateContext);
   const [data, setData] = useState(createData(["Total"]));
-  const [dates, setDates] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const disabledDate = (current) => {
-    return !current.isBetween(meta.minDate, meta.maxDate);
-  };
-
-  const onClickDeleteDate = (date) => {
-    const index = dates.findIndex((d) => d === date);
-    setData({
-      ...data,
-      datasets: data.datasets.filter((d) => d.label !== date),
-    });
-    setDates([...dates.slice(0, index), ...dates.slice(index + 1)]);
-  };
-
-  const onClickAddDate = (date) => {
-    setDates([date, ...dates]);
-    fetchMonthly(date);
-  };
-
-  const onClickClearDates = () => {
-    setData({ ...data, datasets: [] });
-    setDates([]);
-  };
-
-  const fetchMonthly = async (year) => {
+  const fetchYearly = async (year) => {
     setLoading(true);
 
     const res = await fetch(
@@ -64,14 +38,7 @@ const YearlyTotal = () => {
 
   return (
     <div>
-      <YearSelector
-        meta={meta}
-        dates={dates}
-        disabledDate={disabledDate}
-        onClickAddDate={onClickAddDate}
-        onClickClearDates={onClickClearDates}
-        onClickDeleteDate={onClickDeleteDate}
-      />
+      <DateSelector fethchData={fetchYearly} data={data} setData={setData} />
       {loading ? <></> : <Bar options={options} data={data} />}
     </div>
   );

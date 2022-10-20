@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { DateContext } from "../../contexts/dateContext";
+import React, { useState } from "react";
 import { createData, createDefaultDataset } from "../../utils/chart";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";

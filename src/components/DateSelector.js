@@ -5,7 +5,7 @@ import { DatePicker, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { DateContext } from "../contexts/dateContext";
 
-const DateSelector = ({ fethchData, data, setData }) => {
+const DateSelector = ({ fethchData, data, setData, picker = "" }) => {
   const meta = useContext(DateContext);
   const [dates, setDates] = useState([]);
 
@@ -39,6 +39,7 @@ const DateSelector = ({ fethchData, data, setData }) => {
         defaultValue={moment(meta.maxDate)}
         disabledDate={disabledDate}
         onChange={(_, date) => onClickAddDate(date)}
+        picker={picker}
       />
       <div className={styles.dates}>
         {!!dates && dates.length > 0 && (

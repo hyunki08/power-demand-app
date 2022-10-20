@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { DateContext } from "../../contexts/dateContext";
+import React, { useState } from "react";
 import {
   createData,
   TimeLabels,
