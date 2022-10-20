@@ -37,7 +37,7 @@ export const createHourlyDataset = (label, data) => ({
   tension: 0.25,
 });
 
-export const createDailyDataset = (label, data) => ({
+export const createDefaultDataset = (label, data) => ({
   label: label,
   data: data,
   backgroundColor: createRandomColor(),

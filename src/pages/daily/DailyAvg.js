@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { DateContext } from "../../contexts/dateContext";
-import { createData, createDailyDataset } from "../../utils/chart";
+import { createData, createDefaultDataset } from "../../utils/chart";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
 
@@ -52,7 +52,7 @@ const DailyAvg = () => {
     ).then((response) => response.json());
     const total = res[0]["avg"];
 
-    const dataset = createDailyDataset(date, [total]);
+    const dataset = createDefaultDataset(date, [total]);
 
     setData({
       ...data,

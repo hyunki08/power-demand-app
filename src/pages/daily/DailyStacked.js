@@ -1,6 +1,10 @@
 import React, { useContext, useState } from "react";
 import { DateContext } from "../../contexts/dateContext";
-import { createData, createDailyDataset, TimeLabels } from "../../utils/chart";
+import {
+  createData,
+  TimeLabels,
+  createDefaultDataset,
+} from "../../utils/chart";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
 
@@ -61,7 +65,7 @@ const DailyStack = () => {
 
     let dataset = [...data.datasets];
     if (dataset.length === 0) {
-      TimeLabels.map((label) => dataset.push(createDailyDataset(label, [])));
+      TimeLabels.map((label) => dataset.push(createDefaultDataset(label, [])));
     }
 
     const regex = new RegExp("[0-9]+");
