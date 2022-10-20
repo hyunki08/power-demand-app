@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
-import { createDefaultDataset, createData } from "../../utils/chart";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: false,
-    },
-  },
-};
+import { createDefaultDataset, createData, options } from "../../utils/chart";
 
 const MonthlyAvg = () => {
   const [data, setData] = useState(createData(["Average"]));

@@ -1,19 +1,7 @@
 import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
-import { createDefaultDataset, createData } from "../../utils/chart";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: false,
-    },
-  },
-};
+import { createDefaultDataset, createData, options } from "../../utils/chart";
 
 const YearlyAvg = () => {
   const [data, setData] = useState(createData(["Average"]));
@@ -38,7 +26,12 @@ const YearlyAvg = () => {
 
   return (
     <div>
-      <DateSelector fethchData={fetchYearly} data={data} setData={setData} />
+      <DateSelector
+        fethchData={fetchYearly}
+        data={data}
+        setData={setData}
+        picker="year"
+      />
       {loading ? <></> : <Bar options={options} data={data} />}
     </div>
   );

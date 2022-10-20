@@ -1,3 +1,26 @@
+const getOption = (stacked) => ({
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom",
+    },
+    title: {
+      display: false,
+    },
+  },
+  scales: {
+    x: {
+      stacked: stacked,
+    },
+    y: {
+      stacked: stacked,
+    },
+  },
+});
+
+export const options = getOption(false);
+export const stackedOptions = getOption(true);
+
 export const TimeLabels = [
   "1",
   "2",

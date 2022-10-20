@@ -1,27 +1,12 @@
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
-import { TimeLabels, createData, createHourlyDataset } from "../../utils/chart";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    x: {
-      stacked: false,
-    },
-    y: {
-      stacked: false,
-    },
-  },
-};
+import {
+  TimeLabels,
+  createData,
+  createHourlyDataset,
+  options,
+} from "../../utils/chart";
 
 const Hourly = () => {
   const [data, setData] = useState(createData(TimeLabels));

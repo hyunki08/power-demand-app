@@ -3,29 +3,10 @@ import {
   createData,
   TimeLabels,
   createDefaultDataset,
+  stackedOptions,
 } from "../../utils/chart";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
 
 const DailyStack = () => {
   const [data, setData] = useState(createData([]));
@@ -48,7 +29,6 @@ const DailyStack = () => {
       .forEach((obj) => {
         dataset.find(({ label }) => label === obj[0])?.data.push(obj[1]);
       });
-    console.log(dataset);
 
     setData({
       labels: [date, ...data.labels],
@@ -60,7 +40,7 @@ const DailyStack = () => {
   return (
     <div>
       <DateSelector fethchData={fetchDaily} data={data} setData={setData} />
-      {loading ? <></> : <Bar options={options} data={data} />}
+      {loading ? <></> : <Bar options={stackedOptions} data={data} />}
     </div>
   );
 };

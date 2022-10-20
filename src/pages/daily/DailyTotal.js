@@ -1,27 +1,7 @@
 import React, { useState } from "react";
-import { createData, createDefaultDataset } from "../../utils/chart";
+import { createData, createDefaultDataset, options } from "../../utils/chart";
 import { Bar } from "react-chartjs-2";
 import DateSelector from "../../components/DateSelector";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: false,
-    },
-  },
-  scales: {
-    x: {
-      stacked: false,
-    },
-    y: {
-      stacked: false,
-    },
-  },
-};
 
 const DailyTotal = () => {
   const [data, setData] = useState(createData([]));
