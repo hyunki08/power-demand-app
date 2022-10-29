@@ -1,0 +1,41 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size:xx-large;
+  margin-bottom: 20px;
+}
+
+.linkButton {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ddd;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.linkInfo {
+  text-align: start;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.linkTitle {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.linkDescription {
+  height: 60px;
+}
+
+.linkImage {
+  width: 330px;
+}

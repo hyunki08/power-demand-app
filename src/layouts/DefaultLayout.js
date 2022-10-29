@@ -11,7 +11,7 @@ import styles from "../styles/DefaultLayout.module.css";
 const { Header, Footer, Content, Sider } = Layout;
 
 const items = [
-  { key: "/", label: "Dashboard", title: "Dashboard" },
+  { key: "/", label: "Home", title: "Home" },
   {
     key: "/hourly",
     label: "Hourly",

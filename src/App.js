@@ -14,6 +14,7 @@ import MonthlyTotal from "./pages/monthly/MonthlyTotal";
 import MonthlyAvg from "./pages/monthly/MonthlyAvg";
 import YearlyTotal from "./pages/yearly/YearlyTotal";
 import YearlyAvg from "./pages/yearly/YearlyAvg";
+import Home from "./pages/Home";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,7 @@ function App() {
         ) : (
           <DefaultLayout>
             <Routes>
-              <Route path="/" element={<div />} />
+              <Route path="/" element={<Home />} />
               <Route path="/hourly" element={<Hourly />} />
               <Route path="/daily/total" element={<DailyTotal />} />
               <Route path="/daily/stacked" element={<DailyStacked />} />
