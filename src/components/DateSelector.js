@@ -5,7 +5,7 @@ import { DatePicker, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { DateContext } from "../contexts/dateContext";
 
-const DateSelector = ({ fethchData, data, setData, picker = "" }) => {
+const DateSelector = ({ fethchData, data, setData, picker = "date" }) => {
     const meta = useContext(DateContext);
     const [dates, setDates] = useState([]);
 
